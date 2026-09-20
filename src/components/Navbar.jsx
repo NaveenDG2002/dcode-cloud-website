@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/logo.png";
 
 const COLORS = {
   bg: "#0F1424",
@@ -120,7 +119,7 @@ export default function Navbar() {
             background: ${COLORS.bg};
             border-bottom: 1px solid ${COLORS.border};
             padding: 8px 24px 20px;
-            display: none;
+            display: none !important;
           }
           .navbar-links.is-open { display: flex !important; }
           .navbar-links a { width: 100%; padding: 10px 0; }
@@ -129,7 +128,7 @@ export default function Navbar() {
 
       <div style={styles.inner}>
         <NavLink to="/" style={styles.brand} onClick={() => setOpen(false)}>
-        <img src={logo} alt="Dcode Cloud" style={styles.logo} />
+          <img src="/logo.svg" alt="Dcode Cloud" style={styles.logo} />
           <span style={styles.wordmark}>Dcode Cloud</span>
         </NavLink>
 
