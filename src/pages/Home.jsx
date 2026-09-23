@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 
 /* ------------------------------------------------------------------ */
@@ -20,6 +21,7 @@ const services = [
     title: "Zoho Solutions",
     desc: "Turn Zoho into a system built around your business.",
     tags: ["CRM", "Books", "Creator", "Automation"],
+    to: "/solutions/zoho",
   },
   {
     n: "02",
@@ -180,22 +182,27 @@ function HeroNetwork() {
 /* ------------------------------------------------------------------ */
 /*  Service card                                                       */
 /* ------------------------------------------------------------------ */
-function ServiceCard({ n, title, desc, tags }) {
+function ServiceCard({ n, title, desc, tags, to }) {
   const [hovered, setHovered] = useState(false);
+  const CardTag = to ? motion(Link) : motion.div;
+  const linkProps = to ? { to } : {};
 
   return (
-    <motion.div
+    <CardTag
+      {...linkProps}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
       style={{
         position: "relative",
+        display: "block",
         border: `1px solid ${hovered ? COLORS.accent : COLORS.border}`,
         borderRadius: 14,
         padding: "28px 26px",
         background: COLORS.bg,
         cursor: "pointer",
+        textDecoration: "none",
         transition: "border-color 0.2s ease, box-shadow 0.2s ease",
         boxShadow: hovered ? "0 12px 32px rgba(11,13,18,0.08)" : "0 1px 2px rgba(11,13,18,0.02)",
         overflow: "hidden",
@@ -249,7 +256,7 @@ function ServiceCard({ n, title, desc, tags }) {
           </span>
         ))}
       </div>
-    </motion.div>
+    </CardTag>
   );
 }
 
